@@ -1,0 +1,39 @@
+version: 3
+
+vars:
+    COMPOSE_FILE: compose.yaml
+    COMPOSE_EXAMPLE_FILE: compose.example.yaml
+    COMPOSE: docker compose --env-file ./.env
+
+dotenv:
+    - .env
+    - .env.local
+
+tasks:
+    
+    phpstan:
+        desc: 'Run phpstan'
+        cmd: 'tools/phpstan/vendor/bin/phpstan analyze'
+        aliases:
+            - 'ps'
+            - 'stan'
+    
+    fixer:
+        desc: 'Run php-cs-fixer'
+        cmd: 'tools/php-cs-fixer/vendor/bin/php-cs-fixer fix -v'
+        aliases:
+            - 'f'
+            - 'fix'
+    
+    fixer:dry:
+        desc: 'Run php-cs-fixer in dry mode'
+        cmd: 'tools/php-cs-fixer/vendor/bin/php-cs-fixer fix -v --dry-run'
+        aliases:
+            - 'f:d'
+
+    test:
+        desc: 'Run PHP Unit tests'
+        cmd: 'vendor/bin/phpunit'
+        aliases:
+            - 't'
+            - 'tests'

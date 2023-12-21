@@ -1,0 +1,18 @@
+parameters:
+    level: 9
+    reportUnmatchedIgnoredErrors: false
+    paths:
+        - src
+        - tests
+    tmpDir: var/cache/phpstan
+    excludePaths:
+        - */tests/_*
+        - */vendor/*
+        - */migrations/*
+    checkGenericClassInNonGenericObjectType: false
+    ignoreErrors:
+        - message: '#(FunctionalTester)|(AcceptanceTester)|(UnitTester)#'
+          paths:
+            - tests/acceptance
+            - tests/functional
+            - tests/unit
